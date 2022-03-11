@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NewsPost extends Model
 {
+    public $table = "news_app_post";
+    protected $primaryKey = 'id';
     use HasFactory;
 }
