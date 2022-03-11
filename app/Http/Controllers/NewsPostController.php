@@ -18,10 +18,10 @@ class NewsPostController extends Controller
     {
         //$news = NewsPost::all();
         $last = DB::table('news_app_post')->latest('id')->first();
-        //$NewsFilter = DB::table('news_app_post')->where('id', '<>', $last)->get();
+       // $NewsFilter = DB::table('news_app_post')->where('id', '!=',  [$last])->get();
 
         return view('news.index', [
-            //'allNews' => stringValue($NewsFilter),
+            //'allNews' => $NewsFilter,
             'latestNews' => $last,
         ]);
        // dd($NewsFilter);
