@@ -14,7 +14,6 @@ class NewsPostController extends Controller
      */
     public function index()
     {
-        
         $latestNews = NewsPost::orderBy('id', 'desc')->first(); // gets last record in news table
         $relatedNews = NewsPost::where('id', '<>', $latestNews->id)->orderBy('id', 'desc')->get(); //gets all records from news table except the last record in the table
         
@@ -55,7 +54,12 @@ class NewsPostController extends Controller
      */
     public function show(NewsPost $newsPost)
     {
-        //
+        $relatedNews = NewsPost::where('id', '<>', $newsPost->id)->orderBy('id', 'desc')->get(); //gets all records from news table except the record currently displayed
+        
+        return view('news.show', [
+            'news' => $newsPost,
+            'relatedNews' => $relatedNews,
+        ]);
     }
 
     /**
