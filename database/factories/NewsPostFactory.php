@@ -18,7 +18,7 @@ class NewsPostFactory extends Factory
             'title'=>$this->faker->sentence(),
             'filepath'=>$this->faker->sentence(),
             'body'=>$this->faker->paragraph(30),
-            'userId'=>User::factory(),
+            'user_id'=>User::factory(),
 
         ];
     }

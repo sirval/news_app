@@ -35,19 +35,19 @@
       </header>
 
       <div class="row g-5">
-        {{-- @forelse($allNews as $newsPost) --}}
-        {{-- <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+         @forelse($relatedNews as $related)
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
                 <div class="icon" style="background: #fceef3;"><i class="bi bi-binoculars" style="color: #3fcdc7;"></i></div>
-                {{-- <h4 class="title">{{ ucfirst($newsPost->title) }}</h4> --}}
-                {{-- <small style="float: left" class="text-muted">{{ $newsPost->updated_at }}</small> --}}
-               {{-- <a style="color: #3fcdc7; float:right" class="btn btn-outline btn-sm float-right" href="./news/{{ $newsPost->id }}">Read >></i></a> --}}
+                <h4 class="title">{{ ucfirst($related->title) }}</h4>
+                <small style="float: left" class="text-muted">{{ $related->updated_at }}</small>
+               <a style="color: #3fcdc7; float:right" class="btn btn-outline btn-sm float-right" href="./news/{{ $related->id }}">Read >></i></a>
                 
-            {{-- </div>
-        </div> --}} 
-        {{-- @empty
+            </div>
+        </div> 
+       @empty
         <p>No Related News Currently</p>
-        @endforelse --}}
+        @endforelse
     </div>
 
     </div>

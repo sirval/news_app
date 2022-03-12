@@ -15,10 +15,10 @@ class CreateNewsAppPostTable extends Migration
     {
         Schema::create('news_app_post', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
+            $table->string('title');
             $table->text('body');
-            $table->text('filepath');
-            $table->text('userId');
+            $table->string('filepath');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }

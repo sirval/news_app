@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsPost;
-use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class NewsPostController extends Controller
 {
@@ -16,15 +14,15 @@ class NewsPostController extends Controller
      */
     public function index()
     {
-        //$news = NewsPost::all();
-        $last = DB::table('news_app_post')->latest('id')->first();
-       // $NewsFilter = DB::table('news_app_post')->where('id', '!=',  [$last])->get();
-
+        
+        $latestNews = NewsPost::orderBy('id', 'desc')->first(); // gets last record in news table
+        $relatedNews = NewsPost::where('id', '<>', $latestNews->id)->orderBy('id', 'desc')->get(); //gets all records from news table except the last record in the table
+        
         return view('news.index', [
-            //'allNews' => $NewsFilter,
-            'latestNews' => $last,
+            'latestNews' => $latestNews,
+            'relatedNews' => $relatedNews,
+            
         ]);
-       // dd($NewsFilter);
       
     }
 
