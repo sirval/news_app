@@ -21,8 +21,16 @@ Route::post('/news/create/new_news', [NewsPostController::class, 'store']);
 Route::get('/news/{newPost}/edit', [NewsPostController::class, 'edit']);
 Route::put('/news/{newPost}/edit', [NewsPostController::class, 'update']);
 Route::delete('/news/{newPost}', [NewsPostController::class, 'destroy']);
-
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Admin routes
+
+Route::prefix('admin')->group(function() {
+    Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('logout/', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    Route::get('/', 'Auth\AdminController@index')->name('admin.index');
+   }) ;
+
