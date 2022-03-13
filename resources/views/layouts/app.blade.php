@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ secure_asset('../assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ secure_asset('../assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
@@ -44,6 +44,6 @@
 <script src="{{ secure_asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
 <!-- Template Main JS File -->
-<script src="secure_asset/js/main.js"></script>
+<script src="{{ secure_asset('assets/js/main.js') }}"></script>
 
 </html>
