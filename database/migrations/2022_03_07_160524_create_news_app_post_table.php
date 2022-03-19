@@ -14,7 +14,7 @@ class CreateNewsAppPostTable extends Migration
     public function up()
     {
         Schema::create('news_app_post', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
             $table->text('body');
             $table->string('filepath');
