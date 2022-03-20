@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\NewsPost;
+//use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NewsPostFactory extends Factory
@@ -18,7 +19,7 @@ class NewsPostFactory extends Factory
             'title'=>$this->faker->sentence(),
             'filepath'=>$this->faker->sentence(),
             'body'=>$this->faker->paragraph(30),
-            'user_id'=>User::factory(),
+            'user_id'=>$this->faker->numberBetween(1,30),
 
         ];
     }

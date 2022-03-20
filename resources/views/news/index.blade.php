@@ -4,11 +4,13 @@
 <section id="news" class="news">
 
     <div class="container" data-aos="fade-up">
+      @include('layouts.partials.messages')
       <div class="row">
 
         <div class="col-lg-5 col-md-6">
           <div class="news-img" data-aos="fade-right" data-aos-delay="100">
-            <img src="assets/img/about-img.jpg" alt="news_1 Image">
+            <img src="{{ url('storage/uploads/'.$latestNews->filepath) }}" alt="" >
+
           </div>
         </div>
 

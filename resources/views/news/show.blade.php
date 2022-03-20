@@ -9,14 +9,14 @@
 
         <div class="col-lg-5 col-md-6">
           <div class="news-img" >
-            <img src="{{ asset('assets/img/about-img.jpg') }}" alt="news_1 Image">
+            <img src="{{ url('storage/uploads/'.$news->filepath) }}" alt="" >
           </div>
         </div>
 
         <div class="col-lg-7 col-md-6">
           <div class="news-content" >
-            <h2>{{ ($news->title) }}</h2>
-            <p style="text-align: justify">{{ ($news->body) }}</p>
+            <h2>{!! ucfirst($news->title) !!}</h2>
+            <p style="text-align: justify">{!! ($news->body) !!}</p>
             
           </div>
         </div>

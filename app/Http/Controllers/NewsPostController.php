@@ -16,12 +16,20 @@ class NewsPostController extends Controller
     {
         $latestNews = NewsPost::orderBy('id', 'desc')->first(); // gets last record in news table
         $relatedNews = NewsPost::where('id', '<>', $latestNews->id)->orderBy('id', 'desc')->get(); //gets all records from news table except the last record in the table
-        
-        return view('news.index', [
-            'latestNews' => $latestNews,
-            'relatedNews' => $relatedNews,
-            
-        ]);
+        if(! $latestNews)
+        {
+            return redirect()->route('../news')
+            ->withErrors(__('An Error occured while trying to process your request'));
+     
+        }
+        else
+        {
+            return view('news.index', [
+                'latestNews' => $latestNews,
+                'relatedNews' => $relatedNews,
+                
+            ]);
+         }
       
     }
 
