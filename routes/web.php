@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\NewsPostController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NewsPostController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,12 @@ Route::get('/news/{newsPost}', [NewsPostController::class, 'show']);
 
 Route::get('/', [HomeController::class, 'index']);
 
-  
+Route::group(['namespace' => 'App\Http\Controllers'], function()
+{   
  
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-    Route::group(['middleware' => ['guest']], function() 
-    {
+    Route::group(['middleware' => ['guest']], function() {
         
         /**
          * Register Routes
@@ -44,8 +46,7 @@ Route::get('/', [HomeController::class, 'index']);
 
     });
     
-    Route::group(['middleware' => ['auth']], function() 
-    {
+    Route::group(['middleware' => ['auth']], function() {
        
         Route::get('/admin/{newsPost}', [AdminController::class, 'show'])->name('admin.show');
         Route::get('/admin/create/news', [AdminController::class, 'create'])->name('admin.create');
@@ -58,4 +59,5 @@ Route::get('/', [HomeController::class, 'index']);
          */
         Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
     });
+});
 
