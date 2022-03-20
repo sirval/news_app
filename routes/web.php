@@ -23,8 +23,7 @@ Route::get('/news/{newsPost}', [NewsPostController::class, 'show']);
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::group(['namespace' => 'App\Http\Controllers'], function()
-{   
+  
  
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
@@ -59,5 +58,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
     });
-});
 
