@@ -26,7 +26,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   
  
-     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
     Route::group(['middleware' => ['guest']], function() 
     {
