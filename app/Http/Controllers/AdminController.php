@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsPost;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
 
 class AdminController extends Controller
 {
@@ -41,18 +42,49 @@ class AdminController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
            ]);
-           if($file = $request->hasFile('image'))
-           {
-            $file = $request->file('image') ;
-            $fileName = date('YmdHi').'_'.$file->getClientOriginalName() ;
-            $destinationPath = storage_path('app/public/uploads') ;
-            $file->move($destinationPath,$fileName);
-            //$filename = $request->file('image').date('YmdHi');
+           //the upload method handles the uploading of the file and can 
+           //accept attributes to define what should happen to the image
+
+            //Also note you could set a default height for all the images
+            //and Cloudinary does a good job of handling and rendering the image.
+           
+           $file = $request->file('image')->getRealPath();
+           if ($file){
+            Cloudder::upload($file, null, array(
+                "folder" => "news_app_uploads",  "overwrite" => FALSE,
+                "resource_type" => 
+                "image", "responsive" => 
+                TRUE, "transformation" =>
+                 array("quality" =>
+                  "70", "width" =>
+                   "250", "height" => 
+                   "250", "crop" => 
+                   "scale")
+            ));
+            //Cloudinary returns the publicId of the media uploaded 
+            //which we'll store in our database for ease of access when displaying it.
+
+            //$public_id = Cloudder::getPublicId();
+
+                $width = 250;
+                $height = 250;
+            //The show method returns the URL of the media file on Cloudinary
+            $image_url = Cloudder::show(Cloudder::getPublicId(), [
+                "width" => $width, 
+                "height" => $height, 
+                "crop" => "scale", 
+                "quality" => 70, 
+                "secure" => "true"
+            ]);
+
+           
                 $newNews = NewsPost::create([
                     'title' => $request->title,
                     'body' => $request->body,
-                    'filepath' =>$fileName,
+                    'filepath' =>$image_url,
                     'user_id' => auth()->user()->id,
+
+                   
                 ]);
                 return redirect()->route('admin.index')
                 ->withSuccess(__('News Added Successfully'));
