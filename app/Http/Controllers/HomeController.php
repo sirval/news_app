@@ -15,6 +15,6 @@ class HomeController extends Controller
                 'latestNews' => $latestNews,
                 
             ]);
-        
+            
     }
 }

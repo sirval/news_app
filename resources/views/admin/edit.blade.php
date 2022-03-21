@@ -18,6 +18,7 @@
                     </div>
                         
                     <div class="card-body">
+                      @include('layouts.partials.messages')
                         <form class="was-validated" action="" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

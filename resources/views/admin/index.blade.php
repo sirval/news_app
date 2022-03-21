@@ -76,7 +76,7 @@
                                    $sn = 1 
                                 @endphp
                                  
-                                @forelse($allNews as $news)
+                                @foreach($allNews as $news)
                                 <tr>
                                     <td>{{ $sn++ }}</td>
                                     <td>{{ ucfirst($news->title) }}</td>
@@ -87,19 +87,13 @@
                                         <a class="btn btn-primary btn-sm" href="./admin/{{ $news->id }}/edit">Edit</a>
                                         {{-- <a class="btn btn-danger btn-sm" href="javascript:;" data-toggle="modal" data-id='{{$news->id}}' data-target="#exampleModalCenter" >Delete</a>
    --}}
-                                        <form id="delete-frm" action="{{ route('admin.destroy', $news->id) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf  
-                                            <button type="submit" class="btn btn-sm btn-danger " data-toggle="confirmation" title='Delete'>Delete</button>
-                                        </form>
+                                    <a class="btn btn-danger btn-sm" onclick="confirm('Are you sure to delete this data?')" href="{{ route('admin.destroy', $news->id) }}" >Delete</a>
+                                        
                                     </td>
                                     
                                 </tr>
                                 
-    
-                                @empty
-                                
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -118,13 +112,38 @@
     </main>
 </div>
 </div>
+  
+ <!-- Modal -->
+ <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div role="document">
+    <div >
+    <form action="{{ route('admin.destroy', $news->id) }}" method="post">
+        @method('DELETE')
+        @csrf
+    <div >
+        <button type=button data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div >
+        <input type=hidden id="id" name=id>
+        <h5 id="exampleModalLabel">Are you sure want to delete?</h5>
+    </div>
+    <div >
+    <button type=button data-dismiss="modal">No</button>
+    <button type=submit >Yes ! Delete it</button>
+    </div>
+    </form>
 
-<script>
-    window.onload = function () {
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-        });
-    }
-</script>                   
+    </div>
+    </div>
+</div>
+<!-- Modal -->
+ <script>
+    $('.addAttr').click(function() {
+    var id = $(this).data('id');   
+    $('#id').val(id); 
+    } );
+   </script>                  
 
 @endsection

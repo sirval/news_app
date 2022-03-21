@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\NewsPostController;
 use App\Http\Controllers\RegisterController;
 
@@ -18,7 +19,7 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('profile', [UserController::class, 'show'])->middleware('auth');
+// Route::get('profile', [UserController::class, 'show'])->middleware('auth');
 
 Route::get('/news', [NewsPostController::class, 'index']);
 Route::get('/news/{newsPost}', [NewsPostController::class, 'show']);
@@ -53,7 +54,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/admin/create/news',[AdminController::class, 'store'])->name('admin.store');
         Route::get('/admin/{newsPost}/edit', [AdminController::class, 'edit'])->name('admin.edit');
         Route::put('/admin/{newsPost}/edit', [AdminController::class, 'update'])->name('admin.update');
-        Route::delete('/admin/{newsPost}',[AdminController::class, 'destroy'])->name('admin.destroy');
+        // Route::delete('/admin/{newsPost}',[AdminController::class, 'destroy'])->name('admin.destroy');
+        Route::get('/admin/delete/{newsPost}',[AdminController::class, 'destroy'])->name('admin.destroy');
         /**
          * Logout Routes
          */
