@@ -134,41 +134,37 @@ class AdminController extends Controller
      */
     public function update(Request $request, NewsPost $newsPost)
     {
-        // $request->validate([
-        //     'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
-        //    ]);
+        $request->validate([
+                            'image' => 'image|mimes:jpg,png,jpeg|max:2048',
+    ]);
 
-        // if($file = $request->hasFile('image'))
-        //    {
-        //     $file = $request->file('image') ;
-        //     $imgName = date('YmdHi').'_'.$file->getClientOriginalName() ;
-        //     $destinationPath = storage_path('app/public/uploads') ;
-        //     $file->move($destinationPath,$imgName);
-        //     $newsPost -> update([
-        //         'title' => $request->title,
-        //         'body' => $request->body,
-        //         'filepath' => $request->$imgName,
-        //     ]);
-        //     return redirect()->route('admin.index')
-        //     ->withSuccess(__('News Updated successfully.'));
-        //    }
-        //    else 
-        //    {
-        //     $imgName = NewsPost::find($newsPost->id)->get();
-        //     $file = $imgName->filepath;
-        //     $destinationPath = storage_path('app/public/uploads') ;
-        //     $file->move($destinationPath,$imgName);
+    $file = $request->hasFile('image');
 
-        //     $newsPost -> update([
-        //         'title' => $request->title,
-        //         'body' => $request->body,
-        //         'filepath' => $request->$imgName,
-        //     ]);
-        //     return redirect()->route('../admin.index')
-        //     ->withSuccess(__('News updated successfully.'));
-        //    }
+    if($file){
+        $file = $request->file('image') ;
+        $fileName = date('YmdHi').'_'.$file->getClientOriginalName() ;
+        $destinationPath = storage_path('app/public/uploads') ; 
+        $imgName = NewsPost::find($newsPost->id);
+        unlink('storage/uploads/'.$imgName->filepath);
+        $file->move($destinationPath,$fileName);
+        $newsPost -> update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'filepath' => $fileName,
+        ]);
 
-           
+    }
+
+    if(!$file){
+         $newsPost -> update([
+             'title' => $request->title,
+             'body' => $request->body,
+         ]);
+    }
+
+ 
+    return redirect()->back()->withSuccess(__('News Updated successfully.'));
+    
     }
 
     /**
