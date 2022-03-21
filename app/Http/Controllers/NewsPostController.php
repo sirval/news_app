@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsPost;
-use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class NewsPostController extends Controller
 {
@@ -16,15 +14,22 @@ class NewsPostController extends Controller
      */
     public function index()
     {
-        //$news = NewsPost::all();
-        $last = DB::table('news_app_post')->latest('id')->first();
-        //$NewsFilter = DB::table('news_app_post')->where('id', '<>', $last)->get();
-
-        return view('news.index', [
-            //'allNews' => stringValue($NewsFilter),
-            'latestNews' => $last,
-        ]);
-       // dd($NewsFilter);
+        $latestNews = NewsPost::orderBy('id', 'desc')->first(); // gets last record in news table
+        $relatedNews = NewsPost::where('id', '<>', $latestNews->id)->orderBy('id', 'desc')->get(); //gets all records from news table except the last record in the table
+        if(! $latestNews)
+        {
+            return redirect()->route('../news')
+            ->withErrors(__('An Error occured while trying to process your request'));
+     
+        }
+        else
+        {
+            return view('news.index', [
+                'latestNews' => $latestNews,
+                'relatedNews' => $relatedNews,
+                
+            ]);
+         }
       
     }
 
@@ -57,7 +62,12 @@ class NewsPostController extends Controller
      */
     public function show(NewsPost $newsPost)
     {
-        //
+        $relatedNews = NewsPost::where('id', '<>', $newsPost->id)->orderBy('id', 'desc')->get(); //gets all records from news table except the record currently displayed
+        
+        return view('news.show', [
+            'news' => $newsPost,
+            'relatedNews' => $relatedNews,
+        ]);
     }
 
     /**
