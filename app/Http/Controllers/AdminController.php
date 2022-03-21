@@ -111,7 +111,7 @@ class AdminController extends Controller
            if($file){
                $file = $request->file('image') ;
                $fileName = date('YmdHi').'_'.$file->getClientOriginalName() ;
-               $destinationPath = storage_path('app/public/uploads') ; //202203202204_putin_img
+               $destinationPath = storage_path('app/public/uploads') ; 
                $imgName = NewsPost::find($newsPost->id);
                unlink('storage/uploads/'.$imgName->filepath);
                $file->move($destinationPath,$fileName);
