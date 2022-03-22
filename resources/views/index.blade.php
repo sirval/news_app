@@ -24,6 +24,13 @@
       @include('layouts.partials.messages')
       <div class="row">
 
+        <div class="col-lg-7 col-md-6">
+          <div class="news-content" data-aos="fade-left" data-aos-delay="100">
+            <h2>Latest News</h2>
+            <h3>{{ ($latestNews->title) }}</h3>
+          </div>
+        </div>
+
         <div class="col-lg-5 col-md-6">
           <div class="news-img" data-aos="fade-right" data-aos-delay="100">
             <img src="{{ url($latestNews->filepath) }}" alt="" >
@@ -33,8 +40,7 @@
 
         <div class="col-lg-7 col-md-6">
           <div class="news-content" data-aos="fade-left" data-aos-delay="100">
-            <h2>Latest News</h2>
-            <h3>{{ ($latestNews->title) }}</h3>
+            
             <p style="text-align: justify">{{ ($latestNews->body) }}</p>
             
           </div>
