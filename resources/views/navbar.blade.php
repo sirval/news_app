@@ -13,6 +13,7 @@
           <li><a class="nav-link scrollto" href="/news">News</a></li>
           <li><a class="nav-link scrollto" href="/admin">Upload News</a></li>
           <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
+          <li><a class="nav-link scrollto" href="https://github.com/sirval/news_app">Get Source Code</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
