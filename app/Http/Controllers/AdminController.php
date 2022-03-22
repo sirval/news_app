@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsPost;
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AdminController extends Controller
 {
@@ -43,15 +44,17 @@ class AdminController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
            ]);
-           
-           //store the file in news_app_uploads folder in cloudinary 
-           $result = $request->file('image')->storeOnCloudinaryAs('news_app_uploads');
+           // Upload an Image File to Cloudinary with One line of Code
+           $result = Cloudinary::upload($request->file('image')->getRealPath());
+
            $filepath = $result->getSecurePath(); // Get the url of the uploaded file; https
+           $publicId = $result->getPublicId(); // Get the public_id of the uploaded file
             
            if ($result){
                 $newNews = NewsPost::create([
                     'title' => $request->title,
                     'body' => $request->body,
+                    'public_id' => $publicId,
                     'filepath' =>$filepath,
                     'user_id' => auth()->user()->id,
 
@@ -113,16 +116,18 @@ class AdminController extends Controller
 
     if($file){
         
-         
-        $imgName = NewsPost::find($newsPost->filepath);
-        //$imgName->updateMedia($file);
-        //store the file in news_app_uploads folder in cloudinary 
-        $result = $request->file('image')->storeOnCloudinaryAs('news_app_uploads');
+        $imgName = NewsPost::find($newsPost->id);
+        $publicId = $imgName->public_id;
+        //delete already existing image and set it to new selected image
+        Cloudinary::destroy($publicId);
+         // Upload an Image File to Cloudinary with One line of Code
+        $result = Cloudinary::upload($request->file('image')->getRealPath());
         $filepath = $result->getSecurePath(); // Get the url of the uploaded file; https
-        
+        $publicId = $result->getPublicId(); // Get the public_id of the uploaded file
         $newsPost -> update([
             'title' => $request->title,
             'body' => $request->body,
+            'public_id' => $publicId,
             'filepath' => $filepath,
         ]);
 
@@ -150,7 +155,9 @@ class AdminController extends Controller
     {
 
         $imgName = NewsPost::find($newsPost->id);
-        unlink('storage/uploads/'.$imgName->filepath);
+        $publicId = $imgName->public_id;
+        //delete image from cloudinary
+        Cloudinary::destroy($publicId);
         NewsPost::where('id', $imgName->id)->delete();
         
         return redirect()->route('admin.index')

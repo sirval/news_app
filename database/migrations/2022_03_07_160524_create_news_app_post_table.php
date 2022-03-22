@@ -17,6 +17,7 @@ class CreateNewsAppPostTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
+            $table->string('public_id')->nullable();
             $table->string('filepath');
             $table->unsignedInteger('user_id');
             $table->timestamps();

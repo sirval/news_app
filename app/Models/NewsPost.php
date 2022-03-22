@@ -18,6 +18,7 @@ class NewsPost extends Model
     protected $fillable = [
         'title',
         'body',
+        'public_id',
         'filepath',
         'user_id',
     ];
