@@ -7,6 +7,12 @@
     <div class="container" >
       <div class="row">
 
+        <div class="col-lg-7 col-md-6">
+          <div class="news-content" >
+            <h2>{!! ucfirst($news->title) !!}</h2>
+          </div>
+        </div>
+
         <div class="col-lg-5 col-md-6">
           <div class="news-img" >
             <img src="{{ url($news->filepath) }}" alt="">
@@ -15,7 +21,7 @@
 
         <div class="col-lg-7 col-md-6">
           <div class="news-content" >
-            <h2>{!! ucfirst($news->title) !!}</h2>
+            
             <p style="text-align: justify">{!! ($news->body) !!}</p>
             
           </div>
