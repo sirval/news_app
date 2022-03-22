@@ -16,7 +16,7 @@
                         <i class="fas fa-table me-1"></i>
                         Edit News
                     </div>
-                        
+                        @include('layouts.partials.messages')
                     <div class="card-body">
                         <form class="was-validated" action="" method="POST" enctype="multipart/form-data">
                             @csrf
