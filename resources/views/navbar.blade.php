@@ -11,7 +11,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="../">Home</a></li>
           <li><a class="nav-link scrollto" href="/news">News</a></li>
-          
+          <li><a class="nav-link scrollto" href="/login">Upload News</a></li>
           <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

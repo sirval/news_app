@@ -4,7 +4,7 @@
 
     <form style="margin: auto; width: 70%; padding: 5px" method="post" action="{{ route('login.perform') }}">
         
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+       @csrf
         <img class="mb-4" src="{!! url('assets/img/login-img.png') !!}" alt="" width="72" height="57">
         
         <h1 class="h3 mb-3 fw-normal">Login</h1>
