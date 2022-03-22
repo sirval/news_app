@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d52ec08612b7046c4d6d90ea5eae804f",
+    "content-hash": "66a583dc095e89cd9fb05c801cfaff59",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,78 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "cloudinary-labs/cloudinary-laravel",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary-labs/cloudinary-laravel.git",
+                "reference": "ca45f79071868a289b53ad96fc7033df2c882241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary-labs/cloudinary-laravel/zipball/ca45f79071868a289b53ad96fc7033df2c882241",
+                "reference": "ca45f79071868a289b53ad96fc7033df2c882241",
+                "shasum": ""
+            },
+            "require": {
+                "cloudinary/cloudinary_php": "^2.0",
+                "ext-json": "*",
+                "illuminate/support": "~6|~7|~8|^9.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~4|~5|~6|^7.0",
+                "phpunit/phpunit": "^8.0|^9.5.10",
+                "sempro/phpunit-pretty-print": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CloudinaryLabs\\CloudinaryLaravel\\CloudinaryServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cloudinary": "CloudinaryLabs\\CloudinaryLaravel\\Facades\\Cloudinary"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "CloudinaryLabs\\CloudinaryLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Prosper Otemuyiwa",
+                    "email": "prosperotemuyiwa@gmail.com",
+                    "homepage": "https://github.com/unicodeveloper"
+                }
+            ],
+            "description": "A Laravel Cloudinary Package",
+            "homepage": "https://github.com/cloudinary-labs/cloudinary-laravel",
+            "keywords": [
+                "File Transformations",
+                "Media management",
+                "cloudinary",
+                "cloudinary-laravel",
+                "file uploads",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/cloudinary-labs/cloudinary-laravel/issues",
+                "source": "https://github.com/cloudinary-labs/cloudinary-laravel/tree/1.0.5"
+            },
+            "time": "2022-03-03T12:42:11+00:00"
         },
         {
             "name": "cloudinary/cloudinary_php",

@@ -59,7 +59,8 @@
                     </div>
                     <div class="card-body">
                         <h4>{!! $news->title !!}</h4><br>
-                        <img src="{{ url('storage/uploads/'.$news->filepath) }}" alt="" width="100%" height="20%" >
+                        
+                        <img src="{{ url($news->filepath) }}" alt="" width="100%" height="20%" >
                         
                        <p style="text-align: justify">{!! $news->body !!}</p>
                         <div style="float: left">

@@ -9,7 +9,7 @@
 
         <div class="col-lg-5 col-md-6">
           <div class="news-img" >
-            <img src="{{ url('storage/uploads/'.$news->filepath) }}" alt="" >
+            <img src="{{ url($news->filepath) }}" alt="">
           </div>
         </div>
 

@@ -9,7 +9,7 @@
 
         <div class="col-lg-5 col-md-6">
           <div class="news-img" data-aos="fade-right" data-aos-delay="100">
-            <img src="{{ url('storage/uploads/'.$latestNews->filepath) }}" alt="" >
+            <img src="{{ url($latestNews->filepath) }}" alt="" >
 
           </div>
         </div>
