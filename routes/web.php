@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\NewsPostController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -19,7 +20,6 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('profile', [UserController::class, 'show'])->middleware('auth');
 
 Route::get('/news', [NewsPostController::class, 'index']);
 Route::get('/news/{newsPost}', [NewsPostController::class, 'show']);
@@ -32,7 +32,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
     Route::group(['middleware' => ['guest']], function() {
-        
+        Route::prefix('g')->group( function()
+        {
+            Route::get('/payment', [HomeController::class, 'paymentPage'])->name('paymentPage');
+            Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+            Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
+        });
         /**
          * Register Routes
          */

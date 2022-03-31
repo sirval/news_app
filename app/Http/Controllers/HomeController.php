@@ -17,4 +17,8 @@ class HomeController extends Controller
             ]);
         
     }
+    public function paymentPage()
+    {
+        return view('payment');
+    }
 }
