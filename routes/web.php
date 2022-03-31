@@ -32,12 +32,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
     Route::group(['middleware' => ['guest']], function() {
-        Route::prefix('g')->group( function()
-        {
+        
             Route::get('/payment', [HomeController::class, 'paymentPage'])->name('paymentPage');
             Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
             Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
-        });
+       
         /**
          * Register Routes
          */

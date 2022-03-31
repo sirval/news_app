@@ -4,7 +4,14 @@
         <div class="col-md-8 col-md-offset-2">
             <p>
                 <div>
-                    Lagos Eyo Print Tee Shirt
+                    <p>Amount is Auto generated. Click on Pay Now to proceed, 
+                        this is on test mode as a result no deduction to your account.<br>
+                        You can use the following card details below when you click on <i> Use another card</i> on the next page<br>
+                    <br>
+                    Card Number: 4123450131001381<br>
+                    Expiry Date: any date in the future<br>
+                    CVV: 883
+                </p>
                    
                 </div>
             </p>
